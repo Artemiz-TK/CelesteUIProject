@@ -18,7 +18,7 @@ public class BackInputSystemActionsListener : MonoBehaviour
     private InputAction actionX;
 
     [SerializeField] private InputActionReference m_BackAction;
-    void Start()
+    void Awake()
     {
         actionX = m_BackAction.action;
     }
