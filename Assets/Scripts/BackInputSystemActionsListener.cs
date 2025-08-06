@@ -31,7 +31,6 @@ public class BackInputSystemActionsListener : MonoBehaviour
         actionX.Enable();
     }
 
-
     void OnDisable()
     {
         actionX.performed -= OnXPressed;
