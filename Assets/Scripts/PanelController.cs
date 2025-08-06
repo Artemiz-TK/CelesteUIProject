@@ -1,20 +1,34 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace PanelManagment
 {
     public class PanelController : MonoBehaviour
     {
+        [Header("GameObjects")]
         public GameObject mainMenuPanel;
         public GameObject optionsMenuPanel;
+        [SerializeField] private GameObject CLIMB;
+        [SerializeField] private GameObject Language;
 
-        public byte indexOfPainel;
+        [Header("Byte(s)")]
+        public byte indexOfPainel { get; private set; }
+
+        [Header("String Arrays")]
         [SerializeField] private string[] panels;
         public string[] Panels => panels;
+
+        [Header("String(s)")]
         public string currentPanel { get; private set; }
+
+        [Header("Scripts instances fields")]
+        [SerializeField] private EventSystem m_eventSystem;
 
         void Start()
         {
             currentPanel = panels[indexOfPainel];
+            m_eventSystem.firstSelectedGameObject = CLIMB;
         }
 
         /// <summary>
@@ -34,16 +48,23 @@ namespace PanelManagment
         {
             if (nextPanel == "MainMenu")
             {
+                if (indexOfPainel >= 1)
+                {
+                    indexOfPainel--;
+                }
                 mainMenuPanel.SetActive(true);
                 optionsMenuPanel.SetActive(false);
-                indexOfPainel--;
+                m_eventSystem.firstSelectedGameObject = CLIMB;
             }
-            else if (nextPanel == "OptionsMenu")
+            if (nextPanel == "OptionsMenu")
             {
                 optionsMenuPanel.SetActive(true);
                 mainMenuPanel.SetActive(false);
                 indexOfPainel++;
+                m_eventSystem.firstSelectedGameObject = Language;
             }
+
+            currentPanel = nextPanel;
         }
     }
 }
