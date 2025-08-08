@@ -74,13 +74,8 @@ public class BackInputSystemActionsListener : MonoBehaviour
 
     private void OnXPressed(InputAction.CallbackContext context)
     {
-        print("Veio para a função OnXPressed");
-        print(panelController.indexOfPainel);
-        print(panelController.Panels[0]);
-        print(panelController.Panels[1]);
         if (panelController.currentPanel == panelController.Panels[1])
         {
-            print("Voltando");
             panelController.switchPanel(panelController.Panels[0]);
         }
 
