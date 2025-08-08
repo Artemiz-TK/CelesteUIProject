@@ -17,9 +17,8 @@ public class BackInputSystemActionsListener : MonoBehaviour
 
     private InputAction actionX;
 
-    // private InputAction testAction;
-
     [SerializeField] private InputActionReference m_BackAction;
+
     void Awake()
     {
         actionX = m_BackAction.action;
@@ -29,28 +28,9 @@ public class BackInputSystemActionsListener : MonoBehaviour
     {
         if (actionX != null)
         {
-            // Debug.Log($"Registrando action: {m_BackAction.action?.name ?? "NULA"}");
             actionX.performed += OnXPressed;
             actionX.Enable();
         }
-
-        // testAction = new InputAction("TestX", binding: "<Keyboard>/x");
-        // testAction.performed += OnXPressed;
-        // testAction.Enable();
-
-        // if (m_BackAction == null || m_BackAction.action == null)
-        // {
-        //     Debug.LogError("Ação não está atribuída corretamente.");
-        //     return;
-        // }
-
-        // if (!m_BackAction.action.enabled || m_BackAction.asset.enabled)
-        // {
-        //     m_BackAction.action.Enable();
-        //     Debug.Log("Habilitei a ação manualmente.");
-        // }
-
-        // m_BackAction.action.performed += OnXPressed;
     }
 
     void OnDisable()
@@ -62,15 +42,6 @@ public class BackInputSystemActionsListener : MonoBehaviour
             actionX.Disable();
             actionX.Dispose();
         }
-
-        // testAction.Disable();
-        // testAction.Dispose();
-
-        // if (m_BackAction?.action != null)
-        // {
-        //     m_BackAction.action.performed -= OnXPressed;
-        //     m_BackAction.action.Disable();
-        // }
     }
 
     private void OnXPressed(InputAction.CallbackContext context)
@@ -84,6 +55,5 @@ public class BackInputSystemActionsListener : MonoBehaviour
         {
             return;
         }
-
     }
 }
