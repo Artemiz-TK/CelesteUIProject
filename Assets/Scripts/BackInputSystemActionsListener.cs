@@ -17,7 +17,7 @@ public class BackInputSystemActionsListener : MonoBehaviour
 
     private InputAction actionX;
 
-    private InputAction testAction;
+    // private InputAction testAction;
 
     [SerializeField] private InputActionReference m_BackAction;
     void Awake()
@@ -27,16 +27,16 @@ public class BackInputSystemActionsListener : MonoBehaviour
 
     void OnEnable()
     {
-        // if (actionX != null)
-        // {
-        //     Debug.Log($"Registrando action: {m_BackAction.action?.name ?? "NULA"}");
-        //     actionX.performed += ctx => OnXPressed(ctx);
-        //     actionX.Enable();
-        // }
+        if (actionX != null)
+        {
+            // Debug.Log($"Registrando action: {m_BackAction.action?.name ?? "NULA"}");
+            actionX.performed += OnXPressed;
+            actionX.Enable();
+        }
 
-        testAction = new InputAction("TestX", binding: "<Keyboard>/x");
-        testAction.performed += OnXPressed;
-        testAction.Enable();
+        // testAction = new InputAction("TestX", binding: "<Keyboard>/x");
+        // testAction.performed += OnXPressed;
+        // testAction.Enable();
 
         // if (m_BackAction == null || m_BackAction.action == null)
         // {
@@ -55,15 +55,16 @@ public class BackInputSystemActionsListener : MonoBehaviour
 
     void OnDisable()
     {
-        // if (actionX != null)
-        // {
-        //     actionX.performed -= ctx => OnXPressed(ctx);
+        if (actionX != null)
+        {
+            actionX.performed -= OnXPressed;
 
-        //     actionX.Disable();
-        // }
+            actionX.Disable();
+            actionX.Dispose();
+        }
 
-        testAction.Disable();
-        testAction.Dispose();
+        // testAction.Disable();
+        // testAction.Dispose();
 
         // if (m_BackAction?.action != null)
         // {
