@@ -54,14 +54,16 @@ namespace PanelManagment
                 }
                 mainMenuPanel.SetActive(true);
                 optionsMenuPanel.SetActive(false);
-                m_eventSystem.firstSelectedGameObject = CLIMB;
+                m_eventSystem.SetSelectedGameObject(null);
+                m_eventSystem.SetSelectedGameObject(CLIMB);
             }
             if (nextPanel == "OptionsMenu")
             {
                 optionsMenuPanel.SetActive(true);
                 mainMenuPanel.SetActive(false);
                 indexOfPainel++;
-                m_eventSystem.firstSelectedGameObject = Language;
+                m_eventSystem.SetSelectedGameObject(null);
+                m_eventSystem.SetSelectedGameObject(Language);
             }
 
             currentPanel = nextPanel;
